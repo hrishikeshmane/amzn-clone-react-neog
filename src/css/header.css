@@ -1,0 +1,15 @@
+.bg-amazon_blue {
+  background-color: var(--amazon-blue);
+}
+
+.bg-amazon_blue-light {
+  background-color: var(--amazon_blue-light);
+}
+
+.bg-amazon_yellow {
+  background-color: var(--amazon_yello);
+}
+
+.bg-amazon_yellow--hover:hover {
+  background-color: var(--amazon_yello-dark);
+}
