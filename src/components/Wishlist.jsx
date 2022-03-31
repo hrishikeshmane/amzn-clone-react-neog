@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useProducts } from "../context/product-context";
 import Header from "./Header";
 import Rating from "./Rating";
