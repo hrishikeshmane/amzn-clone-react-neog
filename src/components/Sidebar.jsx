@@ -2,7 +2,7 @@ import React from "react";
 import { useProducts } from "../context/product-context";
 
 const Sidebar = () => {
-  const { state, dispatch } = useProducts();
+  const { productState, productDispatch } = useProducts();
 
   return (
     <aside className="sidebar bg-light-gray">
@@ -12,7 +12,7 @@ const Sidebar = () => {
           <button
             className="btn-link-secondary ml-auto"
             onClick={() =>
-              dispatch({
+              productDispatch({
                 type: "RESET",
               })
             }
@@ -27,11 +27,11 @@ const Sidebar = () => {
             type="range"
             list="tickmarks"
             className="h-2"
-            value={state.price}
+            value={productState.price}
             min={10}
             max={1000}
             onChange={(event) =>
-              dispatch({
+              productDispatch({
                 type: "PRICE",
                 payload: parseInt(event.target.value, 10),
               })
@@ -44,11 +44,11 @@ const Sidebar = () => {
             <div className="flex items-center p-1 pr-4 w-fit">
               <input
                 type="checkbox"
-                id="mensclothing "
+                id="mensclothing"
                 name="category"
-                checked={state.category.includes("men's clothing")}
+                checked={productState.category.includes("men's clothing")}
                 onChange={() =>
-                  dispatch({
+                  productDispatch({
                     type: "CATEGORY",
                     payload: "men's clothing",
                   })
@@ -63,9 +63,9 @@ const Sidebar = () => {
                 type="checkbox"
                 id="womenclothing "
                 name="category"
-                checked={state.category.includes("women's clothing")}
+                checked={productState.category.includes("women's clothing")}
                 onChange={() =>
-                  dispatch({
+                  productDispatch({
                     type: "CATEGORY",
                     payload: "women's clothing",
                   })
@@ -80,9 +80,9 @@ const Sidebar = () => {
                 type="checkbox"
                 id="electronics"
                 name="category"
-                checked={state.category.includes("electronics")}
+                checked={productState.category.includes("electronics")}
                 onChange={() =>
-                  dispatch({
+                  productDispatch({
                     type: "CATEGORY",
                     payload: "electronics",
                   })
@@ -97,9 +97,9 @@ const Sidebar = () => {
                 type="checkbox"
                 id="jewellery"
                 name="category"
-                checked={state.category.includes("jewelery")}
+                checked={productState.category.includes("jewelery")}
                 onChange={() =>
-                  dispatch({
+                  productDispatch({
                     type: "CATEGORY",
                     payload: "jewelery",
                   })
@@ -148,7 +148,7 @@ const Sidebar = () => {
                 type="radio"
                 id="lowToHigh"
                 name="sort"
-                onChange={() => dispatch({ type: "PRICE-LOW-TO-HIGH" })}
+                onChange={() => productDispatch({ type: "PRICE_LOW_TO_HIGH" })}
               />
               <label htmlFor="lowToHigh" className="text-lg">
                 Low to High
@@ -159,7 +159,7 @@ const Sidebar = () => {
                 type="radio"
                 id="highToLow"
                 name="sort"
-                onChange={() => dispatch({ type: "PRICE-HIGH-TO-LOW" })}
+                onChange={() => productDispatch({ type: "PRICE_HIGH_TO_LOW" })}
               />
               <label htmlFor="highToLow" className="text-lg">
                 High to Low

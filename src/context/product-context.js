@@ -14,10 +14,13 @@ const ProductProvider = ({ children }) => {
     cart: [],
     products: [],
   };
-  const [state, dispatch] = useReducer(FilterReducer, initialFilter);
+  const [productState, productDispatch] = useReducer(
+    FilterReducer,
+    initialFilter
+  );
 
   return (
-    <ProductContext.Provider value={{ state, dispatch }}>
+    <ProductContext.Provider value={{ productState, productDispatch }}>
       {children}
     </ProductContext.Provider>
   );

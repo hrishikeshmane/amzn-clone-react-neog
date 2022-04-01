@@ -1,65 +1,75 @@
-const FilterReducer = (state, action) => {
+const FilterReducer = (productState, action) => {
   switch (action.type) {
-    case "PRICE-LOW-TO-HIGH":
-      return { ...state, sortBy: action.type };
-    case "PRICE-HIGH-TO-LOW":
-      return { ...state, sortBy: action.type };
+    case "PRICE_LOW_TO_HIGH":
+      return { ...productState, sortBy: action.type };
+    case "PRICE_HIGH_TO_LOW":
+      return { ...productState, sortBy: action.type };
     case "CATEGORY":
       return {
-        ...state,
-        category: state.category.includes(action.payload)
-          ? state.category.filter((category) => category !== action.payload)
-          : [...state.category, action.payload],
+        ...productState,
+        category: productState.category.includes(action.payload)
+          ? productState.category.filter(
+              (category) => category !== action.payload
+            )
+          : [...productState.category, action.payload],
       };
     case "PRICE":
       return {
-        ...state,
+        ...productState,
         price: action.payload,
       };
-    case "ADD-TO-WISHLIST":
+    case "ADD_TO_WISHLIST":
       return {
-        ...state,
-        wishlist: [...state.wishlist, action.payload].filter(
+        ...productState,
+        wishlist: [...productState.wishlist, action.payload].filter(
           (value, index, self) =>
             index === self.findIndex((t) => t.id === value.id)
         ),
       };
-    case "REMOVE-FROM-WISHLIST":
+    case "REMOVE_FROM_WISHLIST":
       return {
-        ...state,
-        wishlist: state.wishlist.filter(
+        ...productState,
+        wishlist: productState.wishlist.filter(
           (item) => item.id !== action.payload.id
         ),
       };
-    case "ADD-TO-CART":
+    case "ADD_TO_CART":
       return {
-        ...state,
-        cart: [...state.cart, action.payload].filter(
+        ...productState,
+        cart: [...productState.cart, action.payload].filter(
           (value, index, self) =>
             index === self.findIndex((t) => t.id === value.id)
         ),
       };
-    case "UPDATE-CART":
+    case "UPDATE_CART":
       return {
-        ...state,
+        ...productState,
         cart: [
-          ...state.cart.filter((item) => item.id !== action.payload.id),
+          ...productState.cart.filter((item) => item.id !== action.payload.id),
           action.payload,
         ],
       };
-    case "REMOVE-FROM-CART":
+    case "REMOVE_FROM_CART":
       return {
-        ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload.id),
+        ...productState,
+        cart: productState.cart.filter((item) => item.id !== action.payload.id),
       };
-    case "UPDATE-PRODUCTS":
+    case "UPDATE_PRODUCTS":
       return {
-        ...state,
-        products: [...state.products, action.payload],
+        ...productState,
+        products: [...productState.products, action.payload],
+      };
+    case "SEE_MORE":
+      console.log("see more", action.payload);
+      return {
+        ...productState,
+        category: productState.category.filter(
+          (item) => item === action.payload
+        ),
       };
     case "RESET":
       return {
-        ...state,
+        ...productState,
         sortBy: "",
         category: [
           "men's clothing",
@@ -70,7 +80,7 @@ const FilterReducer = (state, action) => {
         price: Number.MAX_SAFE_INTEGER,
       };
     default:
-      return state;
+      return productState;
   }
 };
 

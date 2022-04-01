@@ -5,7 +5,7 @@ import { useProducts } from "../context/product-context";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { state } = useProducts();
+  const { productState } = useProducts();
 
   return (
     <header>
@@ -59,7 +59,7 @@ const Header = () => {
               <i className="fa fa-shopping-cart fa-2x mb-2 mr-5"></i>
             </button>
             <span className="flex flex-center absolute -top-1 right-0 m-0 p-1 bg-amazon_yellow rounded-full black font-bold">
-              {state.cart.length}
+              {productState.cart.length}
             </span>
           </div>
         </div>

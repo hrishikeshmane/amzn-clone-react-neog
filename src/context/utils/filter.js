@@ -1,18 +1,18 @@
-const applyFilter = (data, state) => {
+const applyFilter = (data, productState) => {
   const sortByPrice = (data) => {
-    if (state.sortBy === "PRICE-LOW-TO-HIGH")
+    if (productState.sortBy === "PRICE_LOW_TO_HIGH")
       return [...data].sort((item1, item2) => item1.price - item2.price);
-    else if (state.sortBy === "PRICE-HIGH-TO-LOW")
+    else if (productState.sortBy === "PRICE_HIGH_TO_LOW")
       return [...data].sort((item1, item2) => item2.price - item1.price);
     else return data;
   };
 
   const filterByPriceRange = (data) =>
-    data.filter((item) => item.price < state.price);
+    data.filter((item) => item.price < productState.price);
 
   const filterByCategory = (data) =>
     data.filter((item) => {
-      if (state.category.includes(item.category)) return true;
+      if (productState.category.includes(item.category)) return true;
       else return false;
     });
 
@@ -28,8 +28,8 @@ const applyFilter = (data, state) => {
   return productList;
 };
 
-const getTotal = (state) =>
-  state.cart
+const getTotal = (productState) =>
+  productState.cart
     .reduce((acc, currentItem) => currentItem.price * currentItem.quantity, 0)
     .toFixed(2);
 
