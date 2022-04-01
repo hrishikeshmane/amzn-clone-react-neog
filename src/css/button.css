@@ -26,11 +26,20 @@
   background-color: var(--dark-green);
 }
 
-.btn-link:hover {
-  border-bottom: 1px solid white;
+.btn-link {
+  box-sizing: border-box;
 }
+
+.btn-link:hover {
+  border-bottom: 1px solid var(--white);
+}
+
+.btn-link-secondary {
+  box-sizing: border-box;
+}
+
 .btn-link-secondary:hover {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--black);
 }
 
 .btn-floating {

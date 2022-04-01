@@ -13,3 +13,10 @@
 .bg-amazon_yellow--hover:hover {
   background-color: var(--amazon_yello-dark);
 }
+
+.amazon_blue {
+  color: var(--amazon-blue);
+}
+.amazon_yellow {
+  color: var(--amazon_yello);
+}
