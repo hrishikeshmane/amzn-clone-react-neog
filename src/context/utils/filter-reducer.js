@@ -18,6 +18,11 @@ const FilterReducer = (productState, action) => {
         ...productState,
         price: action.payload,
       };
+    case "RATING":
+      return {
+        ...productState,
+        rating: action.payload,
+      };
     case "ADD_TO_WISHLIST":
       return {
         ...productState,
@@ -60,16 +65,21 @@ const FilterReducer = (productState, action) => {
         products: [...productState.products, action.payload],
       };
     case "SEE_MORE":
-      console.log("see more", action.payload);
-      return {
-        ...productState,
-        category: productState.category.filter(
-          (item) => item === action.payload
-        ),
-      };
+      if (action.payload === "browse-all") {
+        return { ...productState, applyFilter: "false" };
+      } else {
+        return {
+          ...productState,
+          applyFilter: "true",
+          category: productState.category.filter(
+            (item) => item === action.payload
+          ),
+        };
+      }
     case "RESET":
       return {
         ...productState,
+        applyFilter: "false",
         sortBy: "",
         category: [
           "men's clothing",
@@ -78,6 +88,7 @@ const FilterReducer = (productState, action) => {
           "women's clothing",
         ],
         price: Number.MAX_SAFE_INTEGER,
+        rating: 0,
       };
     default:
       return productState;

@@ -2,8 +2,14 @@ import electronics from "./assets/electronics.jpg";
 import mensclothing from "./assets/mensclothing.jpg";
 import silver from "./assets/silver.png";
 import womenclothing from "./assets/womenclothing.jpg";
+import cart from "./assets/cart.jpg";
 
 export const homeCards = [
+  {
+    name: "Browse All",
+    image: cart,
+    category: "browse-all",
+  },
   {
     name: "Electronics",
     image: electronics,
@@ -15,14 +21,14 @@ export const homeCards = [
     category: "men's clothing",
   },
   {
-    name: "Jewellery",
-    image: silver,
-    category: "jewelery",
-  },
-  {
     name: "Women's Clothing",
     image: womenclothing,
     category: "women's clothing",
+  },
+  {
+    name: "Jewellery",
+    image: silver,
+    category: "jewelery",
   },
 ];
 

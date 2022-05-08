@@ -57,6 +57,48 @@ export const CartCard = ({
     }
   };
 
+  const moveToWishlist = () => {
+    productDispatch({
+      type: "ADD_TO_WISHLIST",
+      payload: {
+        id,
+        category,
+        image,
+        title,
+        description,
+        price,
+        rating,
+      },
+    });
+    productDispatch({
+      type: "REMOVE_FROM_CART",
+      payload: {
+        id,
+        category,
+        image,
+        title,
+        description,
+        price,
+        rating,
+      },
+    });
+  };
+
+  const deleteFromCart = () => {
+    productDispatch({
+      type: "REMOVE_FROM_CART",
+      payload: {
+        id,
+        category,
+        image,
+        title,
+        description,
+        price,
+        rating,
+      },
+    });
+  };
+
   return (
     <div className="card flex-row lg--flex-col relative rounded-sm w-50 p-4 m-2">
       <img
@@ -88,6 +130,18 @@ export const CartCard = ({
               onClick={addQuantity}
             >
               +
+            </button>
+            <button
+              className="btn-outlined w-fit rounded-sm py-1 px-2 ml-1"
+              onClick={deleteFromCart}
+            >
+              Delete
+            </button>
+            <button
+              className="btn-outlined w-fit rounded-sm py-1 px-2 ml-1"
+              onClick={moveToWishlist}
+            >
+              Move to Wishlist
             </button>
           </div>
         </div>

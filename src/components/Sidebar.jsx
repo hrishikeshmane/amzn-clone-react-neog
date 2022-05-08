@@ -115,25 +115,65 @@ const Sidebar = () => {
           <h4 className="font-semibold mb-2 text-2xl">Rating</h4>
           <div className="flex-col sm--flex wrap">
             <div className="flex items-center p-1 pr-4 w-fit">
-              <input type="radio" id="4+ " name="rating" />
+              <input
+                type="radio"
+                id="4+"
+                name="rating"
+                onChange={() =>
+                  productDispatch({
+                    type: "RATING",
+                    payload: 4,
+                  })
+                }
+              />
               <label htmlFor="4+" className="text-lg">
                 4 Stars & above
               </label>
             </div>
             <div className="flex items-center p-1 pr-4 w-fit">
-              <input type="radio" id="3+ " name="rating" />
+              <input
+                type="radio"
+                id="3+"
+                name="rating"
+                onChange={() =>
+                  productDispatch({
+                    type: "RATING",
+                    payload: 3,
+                  })
+                }
+              />
               <label htmlFor="3+" className="text-lg">
                 3 Stars & above
               </label>
             </div>
             <div className="flex items-center p-1 pr-4 w-fit">
-              <input type="radio" id="2+ " name="rating" />
+              <input
+                type="radio"
+                id="2+"
+                name="rating"
+                onChange={() =>
+                  productDispatch({
+                    type: "RATING",
+                    payload: 2,
+                  })
+                }
+              />
               <label htmlFor="2+" className="text-lg">
                 2 Stars & above
               </label>
             </div>
             <div className="flex items-center p-1 pr-4 w-fit">
-              <input type="radio" id="1+ " name="rating" />
+              <input
+                type="radio"
+                id="1+"
+                name="rating"
+                onChange={() =>
+                  productDispatch({
+                    type: "RATING",
+                    payload: 1,
+                  })
+                }
+              />
               <label htmlFor="1+" className="text-lg">
                 1 Stars & above
               </label>

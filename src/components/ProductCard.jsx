@@ -11,8 +11,11 @@ export const ProductCard = ({
   price,
   rating,
 }) => {
-  const [liked, setLiked] = useState(false);
   const { productState, productDispatch } = useProducts();
+  const { cart, wishlist } = productState;
+
+  const isLiked = (product) => product.id === id;
+  const [liked, setLiked] = useState(wishlist.some(isLiked));
 
   const addToWishlist = () => {
     setLiked(!liked);
@@ -46,7 +49,7 @@ export const ProductCard = ({
   };
 
   const addToCart = () => {
-    if (productState.cart.some((item) => item.id === id)) {
+    if (cart.some((item) => item.id === id)) {
       productDispatch({
         type: "UPDATE_CART",
         payload: {
@@ -57,8 +60,7 @@ export const ProductCard = ({
           description,
           price,
           rating,
-          quantity:
-            productState.cart.filter((item) => item.id === id)[0].quantity + 1,
+          quantity: cart.filter((item) => item.id === id)[0].quantity + 1,
         },
       });
     } else {

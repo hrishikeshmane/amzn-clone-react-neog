@@ -17,11 +17,15 @@ const ProductFeed = () => {
           res.json().then((res) => setProducts(res))
         );
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setProducts(dummyData);
       }
     })();
   }, []);
+
+  useEffect(() => {
+    console.log(products, productState);
+  });
 
   return (
     <>
@@ -30,20 +34,51 @@ const ProductFeed = () => {
         <Sidebar />
         <main className="products h-full">
           <div className="grid grid-cols-4 product-feed my-10 mx-auto">
-            {applyFilter(products, productState).map(
-              ({ id, category, image, title, description, price, rating }) => (
-                <ProductCard
-                  key={id}
-                  id={id}
-                  category={category}
-                  image={image}
-                  title={title}
-                  description={description}
-                  price={price}
-                  rating={rating}
-                />
-              )
-            )}
+            {productState.applyFilter
+              ? applyFilter(products, productState).map(
+                  ({
+                    id,
+                    category,
+                    image,
+                    title,
+                    description,
+                    price,
+                    rating,
+                  }) => (
+                    <ProductCard
+                      key={id}
+                      id={id}
+                      category={category}
+                      image={image}
+                      title={title}
+                      description={description}
+                      price={price}
+                      rating={rating}
+                    />
+                  )
+                )
+              : products.map(
+                  ({
+                    id,
+                    category,
+                    image,
+                    title,
+                    description,
+                    price,
+                    rating,
+                  }) => (
+                    <ProductCard
+                      key={id}
+                      id={id}
+                      category={category}
+                      image={image}
+                      title={title}
+                      description={description}
+                      price={price}
+                      rating={rating}
+                    />
+                  )
+                )}
           </div>
         </main>
       </div>

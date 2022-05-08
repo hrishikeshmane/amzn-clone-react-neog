@@ -7,9 +7,14 @@ export const HomeCard = ({ name, image, category }) => {
   const { productDispatch } = useProducts();
   const seeMoreHandler = () => {
     productDispatch({
+      type: "RESET",
+    });
+
+    productDispatch({
       type: "SEE_MORE",
       payload: category,
     });
+
     navigate("/products");
   };
   return (
