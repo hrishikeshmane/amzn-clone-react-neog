@@ -54,12 +54,6 @@ export const ProductCard = ({
         type: "UPDATE_CART",
         payload: {
           id,
-          category,
-          image,
-          title,
-          description,
-          price,
-          rating,
           quantity: cart.filter((item) => item.id === id)[0].quantity + 1,
         },
       });
