@@ -16,11 +16,9 @@ export const CartCard = ({
 
   const addQuantity = () => {
     productDispatch({
-      type: "UPDATE_CART",
+      type: "ADD_ITEM_QUANTITY_CART",
       payload: {
         id,
-        quantity:
-          productState.cart.filter((item) => item.id === id)[0].quantity + 1,
       },
     });
   };
@@ -28,11 +26,9 @@ export const CartCard = ({
   const subQuantity = () => {
     if (productState.cart.filter((item) => item.id === id)[0].quantity > 1) {
       productDispatch({
-        type: "UPDATE_CART",
+        type: "SUB_ITEM_QUANTITY_CART",
         payload: {
           id,
-          quantity:
-            productState.cart.filter((item) => item.id === id)[0].quantity - 1,
         },
       });
     } else {

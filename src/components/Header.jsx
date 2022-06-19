@@ -41,7 +41,7 @@ const Header = () => {
             </button>
           </div>
 
-          <div>
+          <div className="relative">
             <button
               onClick={() => navigate("/wishlist")}
               className="link white pointer mx-2"
@@ -49,6 +49,9 @@ const Header = () => {
               <p>Wishlist</p>
               <p className="font-bold text-sm">& Orders</p>
             </button>
+            <span className="flex flex-center absolute -top-1 right-0 m-0 p-1 bg-amazon_yellow rounded-full black font-bold">
+              {productState.wishlist.length}
+            </span>
           </div>
 
           <div className="relative ml-2">

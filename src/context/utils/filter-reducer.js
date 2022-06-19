@@ -54,6 +54,32 @@ const FilterReducer = (productState, action) => {
           action.payload,
         ],
       };
+    case "ADD_ITEM_QUANTITY_CART":
+      return {
+        ...productState,
+        cart: [
+          ...productState.cart.map((item) => {
+            if (item.id !== action.payload.id) {
+              return item;
+            } else {
+              return { ...item, quantity: item.quantity + 1 };
+            }
+          }),
+        ],
+      };
+    case "SUB_ITEM_QUANTITY_CART":
+      return {
+        ...productState,
+        cart: [
+          ...productState.cart.map((item) => {
+            if (item.id !== action.payload.id) {
+              return item;
+            } else {
+              return { ...item, quantity: item.quantity - 1 };
+            }
+          }),
+        ],
+      };
     case "REMOVE_FROM_CART":
       return {
         ...productState,
