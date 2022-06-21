@@ -16,13 +16,21 @@ const applyFilter = (data, productState) => {
       else return false;
     });
 
+  const filterByRating = (data) => {
+    return data.filter((item) => {
+      if (item.rating.rate > productState.rating) return true;
+      else return false;
+    });
+  };
+
   const _reduced = (f, g) => (arg) => g(f(arg));
   const pipe = (...fns) => fns.reduce(_reduced);
 
   const productList = pipe(
     sortByPrice,
     filterByPriceRange,
-    filterByCategory
+    filterByCategory,
+    filterByRating
   )(data);
 
   return productList;

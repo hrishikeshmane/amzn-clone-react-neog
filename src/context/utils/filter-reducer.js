@@ -18,6 +18,11 @@ const FilterReducer = (productState, action) => {
         ...productState,
         price: action.payload,
       };
+    case "RATING":
+      return {
+        ...productState,
+        rating: action.payload,
+      };
     case "ADD_TO_WISHLIST":
       return {
         ...productState,
@@ -49,6 +54,32 @@ const FilterReducer = (productState, action) => {
           action.payload,
         ],
       };
+    case "ADD_ITEM_QUANTITY_CART":
+      return {
+        ...productState,
+        cart: [
+          ...productState.cart.map((item) => {
+            if (item.id !== action.payload.id) {
+              return item;
+            } else {
+              return { ...item, quantity: item.quantity + 1 };
+            }
+          }),
+        ],
+      };
+    case "SUB_ITEM_QUANTITY_CART":
+      return {
+        ...productState,
+        cart: [
+          ...productState.cart.map((item) => {
+            if (item.id !== action.payload.id) {
+              return item;
+            } else {
+              return { ...item, quantity: item.quantity - 1 };
+            }
+          }),
+        ],
+      };
     case "REMOVE_FROM_CART":
       return {
         ...productState,
@@ -60,16 +91,21 @@ const FilterReducer = (productState, action) => {
         products: [...productState.products, action.payload],
       };
     case "SEE_MORE":
-      console.log("see more", action.payload);
-      return {
-        ...productState,
-        category: productState.category.filter(
-          (item) => item === action.payload
-        ),
-      };
+      if (action.payload === "browse-all") {
+        return { ...productState, applyFilter: "false" };
+      } else {
+        return {
+          ...productState,
+          applyFilter: "true",
+          category: productState.category.filter(
+            (item) => item === action.payload
+          ),
+        };
+      }
     case "RESET":
       return {
         ...productState,
+        applyFilter: "false",
         sortBy: "",
         category: [
           "men's clothing",
@@ -78,6 +114,7 @@ const FilterReducer = (productState, action) => {
           "women's clothing",
         ],
         price: Number.MAX_SAFE_INTEGER,
+        rating: 0,
       };
     default:
       return productState;

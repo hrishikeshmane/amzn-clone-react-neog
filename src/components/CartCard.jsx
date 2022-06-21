@@ -16,17 +16,9 @@ export const CartCard = ({
 
   const addQuantity = () => {
     productDispatch({
-      type: "UPDATE_CART",
+      type: "ADD_ITEM_QUANTITY_CART",
       payload: {
         id,
-        category,
-        image,
-        title,
-        description,
-        price,
-        rating,
-        quantity:
-          productState.cart.filter((item) => item.id === id)[0].quantity + 1,
       },
     });
   };
@@ -34,17 +26,9 @@ export const CartCard = ({
   const subQuantity = () => {
     if (productState.cart.filter((item) => item.id === id)[0].quantity > 1) {
       productDispatch({
-        type: "UPDATE_CART",
+        type: "SUB_ITEM_QUANTITY_CART",
         payload: {
           id,
-          category,
-          image,
-          title,
-          description,
-          price,
-          rating,
-          quantity:
-            productState.cart.filter((item) => item.id === id)[0].quantity - 1,
         },
       });
     } else {
@@ -55,6 +39,48 @@ export const CartCard = ({
         },
       });
     }
+  };
+
+  const moveToWishlist = () => {
+    productDispatch({
+      type: "ADD_TO_WISHLIST",
+      payload: {
+        id,
+        category,
+        image,
+        title,
+        description,
+        price,
+        rating,
+      },
+    });
+    productDispatch({
+      type: "REMOVE_FROM_CART",
+      payload: {
+        id,
+        category,
+        image,
+        title,
+        description,
+        price,
+        rating,
+      },
+    });
+  };
+
+  const deleteFromCart = () => {
+    productDispatch({
+      type: "REMOVE_FROM_CART",
+      payload: {
+        id,
+        category,
+        image,
+        title,
+        description,
+        price,
+        rating,
+      },
+    });
   };
 
   return (
@@ -88,6 +114,18 @@ export const CartCard = ({
               onClick={addQuantity}
             >
               +
+            </button>
+            <button
+              className="btn-outlined w-fit rounded-sm py-1 px-2 ml-1"
+              onClick={deleteFromCart}
+            >
+              Delete
+            </button>
+            <button
+              className="btn-outlined w-fit rounded-sm py-1 px-2 ml-1"
+              onClick={moveToWishlist}
+            >
+              Move to Wishlist
             </button>
           </div>
         </div>

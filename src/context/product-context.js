@@ -7,12 +7,14 @@ const useProducts = () => useContext(ProductContext);
 
 const ProductProvider = ({ children }) => {
   const initialFilter = {
+    applyFilter: "false",
     sortBy: "",
     category: ["men's clothing", "jewelery", "electronics", "women's clothing"],
     price: Number.MAX_SAFE_INTEGER,
     wishlist: [],
     cart: [],
     products: [],
+    rating: 0,
   };
   const [productState, productDispatch] = useReducer(
     FilterReducer,
